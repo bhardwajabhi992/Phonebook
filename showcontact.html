@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+ 
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Welcome to PhoneBook!</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script>
+      $(document).ready(function (){
+          $("form").validate();
+      })
+  </script>
+  <style>
+      .error{
+          color: red;
+      }
+  </style>
+
+</head>
+
+<body onload="getAllContacts()">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <!-- Brand -->
+        <a class="navbar-brand" href="userhome.html"><img alt="logo" src='./photos/logo.png'
+        width="50" height="50"></a>
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="userhome.html">Home</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Manage Contact
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="addcontact.html">Add Contact</a>
+                    <a class="dropdown-item" href="showcontact.html">View Contact</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Hi, <span id='dname'></span>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="userchangepassword.html">Change Password</a>
+                    <a class="dropdown-item" onclick="firebase.auth().signOut()">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <h3>Show Contact</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <form action="#" method="post" enctype="multipart/form-data" class="form-inline">
+
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="name" class="sr-only">Search by Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Search by Name">
+                        <input type="hidden" name="searchnam">
+                    </div>
+                    <div class="">
+                        <button type="button" id="name-search" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-4">
+                <form action="#" method="post" enctype="multipart/form-data" class="form-inline">
+
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="name" class="sr-only">Search by Name</label>
+                        <input type="text" class="form-control" id="num" name="num" placeholder="Search by Number">
+                        <input type="hidden" name="searchnum">
+                    </div>
+                    <div class="">
+                        <button type="button" id="num-search" class="btn btn-primary">Search</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-warning">
+                <thead>
+                    <tr>
+                        <th>Sr&nbsp;no.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Remarks</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="tBody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+    <script src="./js/firebase-init.js"></script>
+    <script src="./js/showcontact.js"></script>
+</body>
+
+</html>
