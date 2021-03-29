@@ -15,6 +15,7 @@ function getAllContacts() {
 function deleteContact(key) {
     if (confirm('Are you sure you want to delete ?')) {
         firebase.database().ref(`contacts/${key}`).remove();
+        location.reload();
     }
 }
 
